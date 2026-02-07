@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment & Verification | Chandhu-Fitness</title>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- THEME VARIABLES --- */
+        :root {
+            --primary: #ff3b3b;
+            --primary-glow: rgba(255, 59, 59, 0.5);
+            --dark: #050505;
+            --text: #ffffff;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--dark); 
+            background-image: radial-gradient(circle at 50% 0%, #1a0505 0%, #000000 100%);
+            color: var(--text); 
+            font-family: 'Montserrat', sans-serif; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- HEADER --- */
+        header { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Oswald', sans-serif; font-size: 1.8rem; font-weight: 700; color: white; text-decoration: none; }
+        .logo span { color: var(--primary); }
+        .back-link { color: #888; text-decoration: none; font-weight: 600; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .back-link:hover { color: var(--primary); }
+
+        /* --- MAIN LAYOUT --- */
+        .container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .split-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            max-width: 900px;
+            width: 100%;
+            position: relative;
+        }
+
+        /* Top Red Line */
+        .split-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        /* --- LEFT SIDE: PAYMENT --- */
+        .pay-section {
+            padding: 40px;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+        }
+
+        .qr-box {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 20px;
+    position: relative;
+    /* FIX: Force the container to stay small */
+    width: 220px; 
+    height: 220px;
+}
+
+.qr-box img {
+    /* FIX: Force the image to fit the container */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+        
+        .qr-box::after {
+            content: ''; position: absolute; inset: -5px; 
+            border: 2px dashed var(--primary); border-radius: 15px;
+            animation: spin 10s linear infinite;
+        }
+
+        .upi-details {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border: 1px solid #333;
+            text-align: left;
+        }
+
+        .upi-row {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 10px; font-size: 0.9rem;
+        }
+        .upi-row:last-child { margin-bottom: 0; }
+        .copy-btn { color: var(--primary); cursor: pointer; font-size: 0.9rem; }
+        .copy-btn:hover { color: white; }
+
+        /* --- RIGHT SIDE: VERIFY --- */
+        .verify-section {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: rgba(255, 59, 59, 0.05);
+        }
+
+        h2 { font-family: 'Oswald', sans-serif; font-size: 2rem; margin-bottom: 10px; }
+        p { color: #aaa; margin-bottom: 25px; line-height: 1.5; font-size: 0.9rem; }
+
+        .steps { margin-bottom: 30px; }
+        .step { display: flex; gap: 15px; margin-bottom: 15px; align-items: flex-start; }
+        .step-num { 
+            background: var(--primary); color: white; width: 25px; height: 25px; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 0.8rem; flex-shrink: 0;
+        }
+
+        .submit-btn {
+            background: var(--primary); color: white; text-decoration: none;
+            padding: 15px; text-align: center; border-radius: 8px;
+            font-family: 'Oswald', sans-serif; font-size: 1.1rem; letter-spacing: 1px;
+            transition: 0.3s; border: none; cursor: pointer; width: 100%; display: block;
+        }
+        .submit-btn:hover {
+            background: white; color: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .payment-icons { display: flex; gap: 15px; justify-content: center; margin-top: 20px; font-size: 1.5rem; color: #888; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .split-card { grid-template-columns: 1fr; }
+            .pay-section { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">CHANDHU<span>FITNESS</span></a>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> BACK</a>
+    </header>
+
+    <div class="container">
+        <div class="split-card" data-aos="zoom-in">
+            
+            <div class="pay-section">
+                <h3 style="font-family:'Oswald',sans-serif; margin-bottom:20px; letter-spacing:1px;">STEP 1: SCAN TO PAY</h3>
+                
+                <div class="qr-box">
+                    <img src="images/qr.png" alt="Payment QR">
+                </div>
+
+                <div class="upi-details">
+                    <div class="upi-row">
+                        <span style="color:#888;">UPI ID:</span>
+                        <strong id="upi-id">chandhufitness@upi</strong>
+                        <i class="fas fa-copy copy-btn" onclick="copyText('upi-id')"></i>
+                    </div>
+                    <div class="upi-row">
+                        <span style="color:#888;">GPay/PhonePe:</span>
+                        <strong id="upi-num">98765 43210</strong>
+                        <i class="fas fa-copy copy-btn" onclick="copyText('upi-num')"></i>
+                    </div>
+                </div>
+
+                <div class="payment-icons">
+                    <i class="fab fa-google-pay"></i>
+                    <i class="fas fa-mobile-alt"></i> <i class="fas fa-wallet"></i> </div>
+            </div>
+
+            <div class="verify-section">
+                <h2>STEP 2: VERIFY</h2>
+                <p>Payment completed? Great! To activate your membership, we need the transaction screenshot and your ID proof.</p>
+
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-num">1</div>
+                        <div>Take a screenshot of the <strong>Payment Success</strong> screen.</div>
+                    </div>
+
+                    <div class="step">
+                        <div class="step-num">2</div>
+                        <div>Click the button below to upload details securely.</div>
+                    </div>
+                </div>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeHB-MhWyPd-MKO6nOt1vlMwSvc1LWoFXHuVzzSFQ7gdq14Sw/viewform?usp=dialog" target="_blank" class="submit-btn">
+                    UPLOAD PROOF & REGISTER <i class="fas fa-upload" style="margin-left:10px"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800 });
+
+        function copyText(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Copied: " + text);
+            });
+        }
+    </script>
+</body>
+</html>
