@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- ORIGINAL DARK THEME VARIABLES --- */
+        /* --- DARK THEME VARIABLES --- */
         :root {
             --primary: #ff3b3b;
             --primary-glow: rgba(255, 59, 59, 0.5);
@@ -28,8 +28,7 @@
             color: var(--text); 
             font-family: 'Montserrat', sans-serif; 
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
         }
 
         /* --- HEADER --- */
@@ -44,28 +43,17 @@
 
         /* --- MAIN LAYOUT --- */
         .container {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
+            flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px;
         }
 
         .split-card {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr; /* Wider right side for form */
-            background: var(--bg-card);
-            backdrop-filter: blur(15px);
-            border: var(--glass-border);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 0 50px rgba(0,0,0,0.5);
-            max-width: 1000px;
-            width: 100%;
-            position: relative;
+            display: grid; grid-template-columns: 1fr 1.2fr;
+            background: var(--bg-card); backdrop-filter: blur(15px);
+            border: var(--glass-border); border-radius: 20px;
+            overflow: hidden; box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            max-width: 1000px; width: 100%; position: relative;
         }
 
-        /* Top Red Line */
         .split-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
             background: linear-gradient(90deg, transparent, var(--primary), transparent);
@@ -73,28 +61,15 @@
 
         /* --- LEFT SIDE: PAYMENT (QR) --- */
         .pay-section {
-            padding: 40px;
-            border-right: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0,0,0,0.2);
+            padding: 40px; border-right: 1px solid rgba(255,255,255,0.1);
+            text-align: center; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; background: rgba(0,0,0,0.2);
         }
 
         .qr-box {
-            background: white;
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            width: 220px; 
-            height: 220px; /* Fixed height to prevent jumping */
-            min-height: 220px; /* Force stability */
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: white; padding: 10px; border-radius: 10px; margin-bottom: 20px;
+            width: 220px; height: 220px; min-height: 220px;
+            position: relative; display: flex; align-items: center; justify-content: center;
         }
         .qr-box img { width: 100%; height: 100%; object-fit: contain; }
         
@@ -118,12 +93,22 @@
         }
         .tap-btn:hover { background: var(--primary); color: white; box-shadow: 0 0 20px var(--primary-glow); }
 
+        /* NEW: UPI Copy Box Styles */
+        .upi-copy-box {
+            background: #000; border: 1px solid #333; padding: 10px 15px; border-radius: 8px;
+            margin-top: 15px; display: flex; align-items: center; justify-content: space-between;
+            width: 100%; max-width: 280px;
+        }
+        .upi-text { color: #fff; font-family: monospace; font-size: 0.9rem; }
+        .btn-copy {
+            background: #222; color: var(--primary); border: 1px solid #333; padding: 5px 10px;
+            border-radius: 4px; cursor: pointer; font-size: 0.75rem; font-weight: bold; transition: 0.2s;
+        }
+        .btn-copy:hover { background: var(--primary); color: white; }
+
         /* --- RIGHT SIDE: FORM --- */
         .verify-section {
-            padding: 40px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            padding: 40px 50px; display: flex; flex-direction: column; justify-content: center;
         }
 
         h2 { font-family: 'Oswald', sans-serif; font-size: 2rem; margin-bottom: 5px; color: white; }
@@ -138,12 +123,7 @@
             transition: 0.3s; font-family: 'Montserrat', sans-serif;
         }
         input:focus, select:focus { outline: none; border-color: var(--primary); background: rgba(0,0,0,0.5); }
-
-        /* Custom Date Picker Icon Color Fix */
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            filter: invert(1);
-            cursor: pointer;
-        }
+        input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1); cursor: pointer; }
 
         .submit-btn {
             background: var(--primary); color: white;
@@ -153,13 +133,11 @@
         }
         .submit-btn:hover { background: white; color: var(--primary); box-shadow: 0 0 20px var(--primary-glow); }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .split-card { grid-template-columns: 1fr; }
             .pay-section { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 30px 20px; }
             .verify-section { padding: 30px 20px; }
         }
-
         @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
 </head>
@@ -179,21 +157,26 @@
                 <div class="price-tag">₹<span id="displayPrice">0</span></div>
                 
                 <div class="qr-box">
-                    <img id="dynamicQR" src="images/select_plan.png" alt="Select a plan to generate QR">
+                    <img id="dynamicQR" src="images/enter_amount.png" alt="Select Plan">
                 </div>
 
-                <a id="upiLink" href="vikasgm1.in-@okhdfcbank" class="tap-btn">
+                <a id="upiLink" href="#" class="tap-btn">
                     <i class="fas fa-mobile-alt"></i> TAP TO PAY
                 </a>
                 
+                <div class="upi-copy-box">
+                    <span class="upi-text" id="upiText">vikasgm1.in-@okhdfcbank</span>
+                    <button class="btn-copy" onclick="copyUPI()">COPY</button>
+                </div>
+
                 <p style="font-size:0.8rem; color:#666; margin-top:15px;">
-                    Secure UPI Payment via GPay / PhonePe
+                    Google Pay / PhonePe / Paytm
                 </p>
             </div>
 
             <div class="verify-section">
                 <h2>REGISTRATION</h2>
-                <p>Fill in your details to activate membership via WhatsApp.</p>
+                <p>Fill in your details to activate membership.</p>
 
                 <form onsubmit="submitToWhatsApp(event)">
                     
@@ -214,10 +197,10 @@
                     <label>JOINING/RENEWAL DATE</label>
                     <input type="date" id="joinDate" required>
 
-                    <label>FULL NAME (Alphabets Only)</label>
+                    <label>FULL NAME</label>
                     <input type="text" id="userName" required placeholder="Ex. Rahul Kumar" oninput="validateName(this)">
 
-                    <label>PHONE NUMBER (Digits Only)</label>
+                    <label>PHONE NUMBER</label>
                     <input type="tel" id="userPhone" required placeholder="Ex. 9876543210" maxlength="10" oninput="validatePhone(this)">
 
                     <label>PAYMENT ID (UTR)</label>
@@ -236,24 +219,30 @@
     <script>
         AOS.init({ duration: 800 });
 
-        // --- CONFIGURATION ---
-        // 1. PASTE YOUR GOOGLE SCRIPT URL HERE
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbynxK5255t3pAmsCHsQegf1L_pS4bTICU9PeJPUvobGxty1Ld1jYO103b6woWGd7yVFpQ/exec'; 
-        
+        // ==========================================
+        //  1. EDIT YOUR PAYMENT DETAILS HERE 👇
+        // ==========================================
         const myUPI = "vikasgm1.in-@okhdfcbank"; 
         const myName = "Chandhu Fitness";
-        const ownerNumber = "919535690976";
+        const ownerNumber = "919535690976"; // Your WhatsApp Number with Country Code (No +)
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbynxK5255t3pAmsCHsQegf1L_pS4bTICU9PeJPUvobGxty1Ld1jYO103b6woWGd7yVFpQ/exec'; 
+        // ==========================================
 
-        // --- VALIDATION LOGIC ---
-        function validateName(input) {
-            input.value = input.value.replace(/[^a-zA-Z\s]/g, '');
+        // Set UPI Text on Load
+        document.getElementById('upiText').innerText = myUPI;
+
+        function validateName(input) { input.value = input.value.replace(/[^a-zA-Z\s]/g, ''); }
+        function validatePhone(input) { input.value = input.value.replace(/[^0-9]/g, ''); }
+
+        function copyUPI() {
+            const upi = document.getElementById('upiText').innerText;
+            navigator.clipboard.writeText(upi).then(() => {
+                const btn = document.querySelector('.btn-copy');
+                btn.innerText = "COPIED!";
+                setTimeout(() => btn.innerText = "COPY", 2000);
+            });
         }
 
-        function validatePhone(input) {
-            input.value = input.value.replace(/[^0-9]/g, '');
-        }
-
-        // --- PAYMENT LOGIC ---
         function updatePaymentDetails() {
             const select = document.getElementById('planSelect');
             const customBox = document.getElementById('customAmountBox');
@@ -262,7 +251,6 @@
             if (select.value === "CUSTOM") {
                 customBox.style.display = "block";
                 document.getElementById('displayPrice').innerText = "0";
-                // Show placeholder to maintain size
                 qrImage.src = "https://via.placeholder.com/250x250.png?text=Enter+Amount"; 
                 return;
             } else {
@@ -271,91 +259,71 @@
 
             if(select.value === "none") {
                 document.getElementById('displayPrice').innerText = "0";
-                qrImage.src = "images/enter_amount.png";
+                qrImage.src = "images/enter_amount.png"; 
+                // Ensure you have an image named 'enter_amount.png' or use placeholder
                 return;
             }
 
             const selectedOption = select.options[select.selectedIndex];
             const price = selectedOption.getAttribute('data-price');
-            
             generateQR(price);
         }
 
         function updateCustomPrice() {
             const price = document.getElementById('customPriceInput').value;
-            const qrImage = document.getElementById('dynamicQR');
-
-            if (price && price > 0) {
-                generateQR(price);
-            } else {
-                document.getElementById('displayPrice').innerText = "0";
-                qrImage.src = "https://via.placeholder.com/250x250.png?text=Enter+Amount";
-            }
+            if (price && price > 0) generateQR(price);
+            else document.getElementById('displayPrice').innerText = "0";
         }
 
         function generateQR(price) {
             document.getElementById('displayPrice').innerText = price;
+            // Generate UPI Link
             let upiString = `upi://pay?pa=${myUPI}&pn=${myName}&am=${price}&cu=INR`;
             document.getElementById('upiLink').href = upiString;
 
+            // Generate QR Code Image
             if(price > 0) {
                 let qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiString)}`;
                 document.getElementById('dynamicQR').src = qrUrl;
             }
         }
 
-        // --- SUBMIT TO GOOGLE SHEET + WHATSAPP ---
         function submitToWhatsApp(e) {
             e.preventDefault();
-
             const submitBtn = document.querySelector('.submit-btn');
             const originalText = submitBtn.innerHTML;
             
-            // 1. Get Data
             const plan = document.getElementById('planSelect').value;
             const price = document.getElementById('displayPrice').innerText;
             const date = document.getElementById('joinDate').value;
             const name = document.getElementById('userName').value;
             const phone = document.getElementById('userPhone').value;
-            let txn = document.getElementById('userTxn').value;
-            if(txn.trim() === "") txn = "Not Provided";
+            let txn = document.getElementById('userTxn').value || "Not Provided";
 
             if(plan === "none" || price == "0" || name === "" || phone === "") {
                 alert("Please select a plan and fill in details.");
                 return;
             }
 
-            // 2. Change Button State
             submitBtn.innerHTML = "Saving Data... <i class='fas fa-spinner fa-spin'></i>";
             submitBtn.disabled = true;
 
-            // 3. Prepare Data for Sheet
             let formData = new FormData();
             formData.append('Name', name);
             formData.append('Phone', phone);
             formData.append('Plan', plan);
             formData.append('Amount', price);
             formData.append('UTR', txn);
+            formData.append('Date', date); // Important: Send the selected date
 
-            // 4. Send to Google Sheet
             fetch(scriptURL, { method: 'POST', body: formData })
                 .then(response => {
-                    // 5. Success: Open WhatsApp
-                    const message = `*NEW ADMISSION*%0A%0A` +
-                                    `🏋️ *Plan:* ${plan}%0A` +
-                                    `💰 *Amount:* ₹${price}%0A` +
-                                    `📅 *Date:* ${date}%0A` +
-                                    `👤 *Name:* ${name}%0A` +
-                                    `📞 *Phone:* ${phone}%0A` +
-                                    `🧾 *UTR:* ${txn}`;
-                    
+                    const message = `*NEW ADMISSION*%0A%0A🏋️ *Plan:* ${plan}%0A💰 *Amount:* ₹${price}%0A📅 *Date:* ${date}%0A👤 *Name:* ${name}%0A📞 *Phone:* ${phone}%0A🧾 *UTR:* ${txn}`;
                     window.open(`https://wa.me/${ownerNumber}?text=${message}`, '_blank');
-                    
-                    alert("Registration Successful! Data Saved.");
-                    location.reload(); // Refresh page
+                    alert("Registration Successful!");
+                    location.reload();
                 })
                 .catch(error => {
-                    console.error('Error!', error.message);
                     alert("Error saving data. Sending to WhatsApp anyway...");
                     const message = `*NEW ADMISSION (Sheet Error)*%0A%0AName: ${name}%0AAmount: ${price}`;
                     window.open(`https://wa.me/${ownerNumber}?text=${message}`, '_blank');
