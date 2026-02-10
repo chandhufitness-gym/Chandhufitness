@@ -1,10 +1,314 @@
 <style>
+/* =========================================
+   THE "MODERN GLASS" DESIGN SYSTEM
+   ========================================= */
 
-        /* Prevent auto-zoom on inputs for iOS */
-@media screen and (max-width: 768px) {
-    input, select, textarea {
-        font-size: 16px !important;
+.glass-hero {
+    position: relative;
+    height: 100vh; /* Full Height */
+    width: 100%;
+    
+    /* BACKGROUND IMAGE */
+    background: url('../images/gym_banner.jpeg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed; /* Parallax effect */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* 1. SOFT OVERLAY (Elegant Dark) */
+.glass-overlay {
+    position: absolute;
+    inset: 0;
+    /* Soft gradient from top-black to bottom-black, clear in middle */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.4), rgba(0,0,0,0.9));
+    z-index: 1;
+}
+
+/* 2. FLOATING GLASS BUBBLES */
+.floating-container {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.glass-bubble {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* THE GLASS EFFECT */
+    background: rgba(255, 255, 255, 0.05); /* Very transparent */
+    backdrop-filter: blur(10px); /* Blurs the background behind it */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    border-radius: 50%; /* Circle */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    
+    color: rgba(255, 255, 255, 0.8);
+    animation: floatSmooth 6s ease-in-out infinite;
+}
+
+/* Specific Bubble Sizes & Positions */
+.b1 {
+    width: 120px; height: 120px;
+    top: 20%; left: 15%;
+    font-size: 3rem;
+    animation-delay: 0s;
+}
+
+.b2 {
+    width: 80px; height: 80px;
+    top: 25%; right: 20%;
+    font-size: 2rem;
+    animation-delay: 2s;
+    color: #ff4d4d; /* Subtle red tint for heart */
+}
+
+.b3 {
+    width: 100px; height: 100px;
+    bottom: 25%; left: 20%;
+    font-size: 2.5rem;
+    animation-delay: 1s;
+}
+
+@keyframes floatSmooth {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* =========================================
+   3. HERO SECTION (FIXED ALIGNMENT)
+   ========================================= */
+.glass-hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    background: url('../images/gym_banner.jpeg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    
+    /* FLEXBOX CENTERING MAGIC */
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    justify-content: center; /* Centers vertically */
+    align-items: center;     /* Centers horizontally */
+    text-align: center;      /* Forces text to center */
+    
+    overflow: hidden;
+    padding-top: 80px; /* CRITICAL: Pushes content down so it doesn't hit the Logo */
+}
+
+/* Background Overlay */
+.glass-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.8));
+    z-index: 1;
+}
+
+/* Content Wrapper - Forces everything to the middle */
+.hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 900px;
+    width: 100%;
+    padding: 0 20px;
+    
+    /* DOUBLE CHECK CENTERING */
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+/* Floating Bubbles - Moved further out to avoid text collision */
+.floating-container {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.glass-bubble {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    color: rgba(255, 255, 255, 0.8);
+    animation: floatSmooth 6s ease-in-out infinite;
+}
+
+/* FIX: Moved icons closer to edges so they don't block text */
+.b1 { 
+    width: 100px; height: 100px; 
+    top: 25%; left: 5%; /* Moved to edge */
+    font-size: 2.5rem; 
+    animation-delay: 0s; 
+}
+
+.b2 { 
+    width: 70px; height: 70px; 
+    top: 30%; right: 5%; /* Moved to edge */
+    font-size: 1.8rem; 
+    animation-delay: 2s; 
+    color: #ff4d4d; 
+}
+
+.b3 { 
+    width: 90px; height: 90px; 
+    bottom: 15%; left: 10%; 
+    font-size: 2.2rem; 
+    animation-delay: 1s; 
+}
+
+@keyframes floatSmooth {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Text Styling */
+.pill-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 25px; border-radius: 50px;
+    font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;
+    color: #fff; margin-bottom: 30px; 
+    backdrop-filter: blur(10px);
+}
+
+.dot {
+    width: 8px; height: 8px; background: #4ade80;
+    border-radius: 50%; box-shadow: 0 0 10px #4ade80;
+}
+
+.glass-hero h1 {
+    font-size: clamp(3rem, 6vw, 6rem); /* Big responsive text */
+    font-weight: 800; 
+    line-height: 1.1; 
+    color: white;
+    margin-bottom: 20px; 
+    text-transform: uppercase;
+    width: 100%; /* Ensures text aligns relative to full width */
+}
+
+.highlight-text {
+    background: linear-gradient(to right, #fff, #aaa);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+
+.glass-hero p {
+    font-size: clamp(1rem, 1.5vw, 1.3rem);
+    color: #ddd; 
+    margin-bottom: 40px; 
+    font-weight: 400; 
+    line-height: 1.6;
+    max-width: 600px; /* Prevents paragraph from getting too wide */
+}
+
+/* Buttons */
+.btn-wrapper { 
+    display: flex; 
+    justify-content: center; 
+    gap: 20px; 
+    align-items: center;
+    flex-wrap: wrap; /* Allows stacking on tiny screens */
+}
+
+.modern-btn {
+    padding: 18px 45px; background: white; color: black;
+    border: none; border-radius: 50px; font-weight: 700; font-size: 1rem;
+    cursor: pointer; transition: 0.3s; box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+.modern-btn:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); }
+
+.link-btn {
+    background: transparent; color: white; border: none; font-size: 1rem;
+    cursor: pointer; border-bottom: 1px solid transparent; transition: 0.3s;
+    display: flex; align-items: center; gap: 10px; padding: 10px;
+}
+.link-btn:hover { gap: 15px; border-bottom: 1px solid white; }
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .glass-hero { padding-top: 100px; } /* More space on mobile */
+    .b1 { top: 15%; left: 2%; opacity: 0.3; } /* Faint icons on mobile */
+    .b2 { top: 20%; right: 2%; opacity: 0.3; }
+    .b3 { bottom: 10%; left: 5%; opacity: 0.3; }
+    .glass-hero h1 { font-size: 3rem; }
+}
+
+/* 4. BUTTONS */
+.btn-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.modern-btn {
+    padding: 15px 40px;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 50px; /* Fully rounded pill shape */
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.modern-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+.link-btn {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.link-btn:hover {
+    border-bottom: 1px solid white;
+    gap: 15px; /* Arrow moves slightly */
+}
+
+/* --- MOBILE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+    .glass-hero { background-attachment: scroll; } /* Fix mobile parallax jitter */
+    
+    /* Make bubbles smaller and pushed back on mobile */
+    .b1 { width: 80px; height: 80px; top: 15%; left: 5%; opacity: 0.5; }
+    .b2 { width: 60px; height: 60px; top: 18%; right: 5%; opacity: 0.5; }
+    .b3 { width: 70px; height: 70px; bottom: 15%; left: 10%; opacity: 0.5; }
+    
+    .btn-wrapper {
+        flex-direction: column;
+        gap: 15px;
     }
+    
+    .modern-btn { width: 100%; max-width: 250px; }
 }
         /* --- 1. MODERN VARIABLES --- */
         :root {
@@ -71,26 +375,6 @@
             transform: translateY(-2px);
         }
 
-        /* --- 3. HERO SECTION --- */
-        .hero {
-            height: 100vh;
-            width: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.9)), url('images/gym_banner.jpeg');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 0 20px;
-            overflow: hidden;
-        }
-
-        .hero h1 { font-size: 5rem; line-height: 1.1; margin-bottom: 20px; text-shadow: 0 5px 15px rgba(0,0,0,0.8); }
-        .typewriter { color: var(--primary); text-shadow: 0 0 20px var(--primary-glow); }
-        
-        .cta-btn {
-            padding: 15px 50px; background: var(--primary); border: none;
-            color: white; font-size: 1.2rem; font-weight: bold; cursor: pointer;
-            transition: 0.3s; margin-top: 30px; clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
-        }
-        .cta-btn:hover { transform: scale(1.05); box-shadow: 0 0 30px var(--primary-glow); }
 
         /* --- 4. GLASSMORPHISM CARDS --- */
         section { 
@@ -924,4 +1208,6 @@ details[open] summary::after {
         }
 
         @keyframes fadeIn { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+
+
     </style>
