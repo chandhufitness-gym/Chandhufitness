@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,12 +30,52 @@
     </nav>
 </header>
 
-<div class="hero" id="home">
-    <h1 data-aos="fade-down">BUILD YOUR <br><span class="typewriter"></span></h1>
-    <p data-aos="fade-up" style="font-size: 1.2rem; color: #ccc; max-width: 600px; margin-bottom: 10px;">
-        Premium Gear. Expert Coaching. Unstoppable Results.
-    </p>
-    <button class="cta-btn" data-aos="zoom-in" onclick="document.getElementById('plans').scrollIntoView()">START YOUR JOURNEY</button>
+<div class="glass-hero" id="home">
+    
+    <div class="glass-overlay"></div>
+
+    <div class="floating-container">
+        <div class="glass-bubble b1">
+            <i class="fas fa-dumbbell"></i>
+        </div>
+        
+        <div class="glass-bubble b2">
+            <i class="fas fa-heartbeat"></i>
+        </div>
+        
+        <div class="glass-bubble b3">
+            <i class="fas fa-bolt"></i>
+        </div>
+    </div>
+
+    <div class="hero-content">
+        
+        <div class="pill-badge">
+            <span class="dot"></span> NOW OPEN IN YOUR CITY
+        </div>
+        
+        <h1>
+            DEFINE YOUR <br> 
+            <span class="highlight-text">TRUE SELF</span>
+        </h1>
+        
+        <p>
+            Simple. Effective. Elite. <br>
+            Join the community that builds champions.
+        </p>
+        
+        <div class="btn-wrapper">
+            <button class="modern-btn" onclick="document.getElementById('plans').scrollIntoView()">
+                Get Started
+            </button>
+            
+            <button class="link-btn" onclick="document.getElementById('schedule').scrollIntoView()">
+                View Schedule <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+    </div>
+
 </div>
 
 <section id="services" style="padding: 50px 0;">
@@ -134,12 +175,22 @@
             <ul class="features"><li><i class="fas fa-check"></i> Morning/Evening Access</li><li><i class="fas fa-check"></i> Weight Training </li></ul>
             <button class="join-btn" style="width:100%; margin-top:30px" onclick="window.location.href='join.html'">CHOOSE</button>
         </div>
-        <div class="glass-card plan-card popular" data-aos="fade-up" data-aos-delay="100" style="border-color:var(--primary); background:rgba(255,59,59,0.05)">
-            <h3>GOLD</h3><div class="price">₹799<span>/mo</span></div>
-            <ul class="features"><li><i class="fas fa-check"></i> Morning/Evening Access</li><li><i class="fas fa-check"></i> Cardio Zone </li>
-            <li></ul>
-            <button class="cta-btn" style="width:100%; margin-top:30px; padding:15px" onclick="window.location.href='join.html'">CHOOSE</button>
-        </div>
+        
+<div class="glass-card plan-card popular" data-aos="fade-up" data-aos-delay="100" style="border-color:var(--primary); background:rgba(255,59,59,0.05)">
+    <h3>GOLD</h3>
+    <div class="price">₹799<span>/mo</span></div>
+    
+    <ul class="features">
+        <li><i class="fas fa-check"></i> Morning/Evening Access</li>
+        <li><i class="fas fa-check"></i> Cardio Zone</li>
+
+    <button class="join-btn" 
+            style="width:100%; margin-top:30px; background:var(--primary); color:white; border:none; box-shadow: 0 0 15px var(--primary-glow);" 
+            onclick="window.location.href='join.html'">
+        CHOOSE
+    </button>
+</div>
+        
         <div class="glass-card plan-card" data-aos="fade-up" data-aos-delay="200">
             <h3>PLATINUM</h3><div class="price">₹4999<span>/6mo</span></div>
             <ul class="features"><li><i class="fas fa-check"></i> All Gold Benefits</li><li><i class="fas fa-check"></i> 1-on-1 Training</li></ul>
