@@ -405,29 +405,60 @@
             border-color: var(--primary);
         }
 
-/* --- FIXED SECTION TITLE ALIGNMENT --- */
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 50px;
-            position: relative;
-            display: block; /* Changed from inline-block to block */
-            width: 100%;    /* Takes full width to center text properly */
-            left: auto;     /* Reset positioning */
-            transform: none; /* Remove shift */
-        }
+/* --- HEADER CONTAINER --- */
+.section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Forces everything to center horizontally */
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 50px;
+}
 
-        .section-title span { color: var(--primary); }
+/* --- TITLE ("INSIDE THE ARENA") --- */
+.section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block; /* Keeps the red line width tight to text */
+    margin-bottom: 0;      /* Remove bottom margin so subtitle controls spacing */
+    padding-bottom: 10px;  /* Space for the red line */
+}
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--primary);
-            margin: 10px auto 0; /* 'auto' centers the underline */
-            border-radius: 2px;
-        }
+/* --- LIFT "ARENA" HIGHER --- */
+.section-title span {
+    position: relative;
+    top: -10px;  /* Moves 'ARENA' slightly higher than 'INSIDE THE' */
+    display: inline-block;
+}
+
+/* --- THE RED LINE --- */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #ff3b3b; /* Or var(--primary) */
+    margin: 0 auto;      /* Centers the line */
+    border-radius: 2px;
+    position: absolute;  /* Locks line to bottom of title */
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* --- THE SUBTITLE (Middle Alignment) --- */
+.section-subtitle {
+    text-align: center;   /* Forces text to center */
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 20px;     /* Push it down away from the red line */
+    width: 100%;
+    display: block;
+}
 
         /* --- SERVICES SLIDER (Animation Kept Same) --- */
         .slider-container {
