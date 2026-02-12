@@ -376,18 +376,18 @@
         }
 
 
-/* --- 1. MAIN CONTAINER (Forces centering) --- */
+/* --- 1. MAIN CONTAINER (The Centering Engine) --- */
 .section-header {
     display: flex;
     flex-direction: column;
-    align-items: center;     /* Centers items horizontally */
-    justify-content: center; /* Centers items vertically */
-    text-align: center;      /* Ensures text inside is centered */
+    align-items: center;     /* This centers the inline-block title perfectly */
+    justify-content: center;
+    text-align: center;
     width: 100%;
     margin-bottom: 50px;
 }
 
-/* --- 2. THE TITLE ("INSIDE THE ARENA") --- */
+/* --- 2. THE TITLE (Hugs the text tightly) --- */
 .section-title {
     font-family: 'Oswald', sans-serif;
     font-size: 3rem;
@@ -397,9 +397,9 @@
     
     /* Layout Logic */
     position: relative;
-    display: inline-block; /* Makes the box wrap tightly around text */
+    display: inline-block; /* Crucial: Makes the box only as wide as the text */
     margin: 0;             /* Reset margins */
-    padding-bottom: 15px;  /* Space for the red line */
+    padding-bottom: 15px;  /* Creates specific space for the red line */
     z-index: 1;
 }
 
@@ -407,17 +407,17 @@
 .section-title span {
     display: inline-block;
     position: relative;
-    top: -10px;            /* ADJUST THIS: Moves 'ARENA' up */
-    color: #ff3b3b;        /* Ensures it's red */
+    top: -10px;            /* Moves 'ARENA' up */
+    color: #ff3b3b;        /* Ensures it is red */
 }
 
-/* --- 4. THE RED LINE (Centered perfectly under title) --- */
+/* --- 4. THE RED LINE (Locks to the center of the text box) --- */
 .section-title::after {
     content: '';
     position: absolute;
     left: 50%;
     bottom: 0;
-    transform: translateX(-50%); /* Locks it to the exact center */
+    transform: translateX(-50%); /* Moves line to exact center of text */
     
     width: 60px;
     height: 4px;
