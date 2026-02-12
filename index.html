@@ -634,6 +634,47 @@
             document.body.style.overflow = "auto";
         }
     }
+
+    // Function to open the lightbox
+function openLightbox(card) {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const caption = document.getElementById('lightbox-caption');
+    
+    // 1. Get the image source from the clicked card
+    const img = card.querySelector('img');
+    const title = card.querySelector('h3').innerText;
+    
+    // 2. Set the lightbox image and caption
+    lightboxImg.src = img.src;
+    caption.innerText = title;
+    
+    // 3. Show the lightbox
+    lightbox.style.display = 'flex';
+    // Small timeout to allow the 'display:flex' to apply before fading in
+    setTimeout(() => {
+        lightbox.classList.add('active');
+    }, 10);
+    
+    // Disable scrolling on background
+    document.body.style.overflow = 'hidden';
+}
+
+// Function to close the lightbox
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    
+    lightbox.classList.remove('active');
+    
+    // Wait for animation to finish before hiding
+    setTimeout(() => {
+        lightbox.style.display = 'none';
+    }, 300);
+    
+    // Re-enable scrolling
+    document.body.style.overflow = 'auto';
+}
+    
 </script>
 <div id="lightbox" class="lightbox" onclick="closeLightbox()">
     <span class="close-btn">&times;</span>
