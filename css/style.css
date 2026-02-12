@@ -376,19 +376,64 @@
         }
 
 
-        /* --- 4. GLASSMORPHISM CARDS --- */
-        section { 
-            padding: 100px 5%; 
-            position: relative; 
-            overflow: hidden; 
-        }
-        
-        .section-title { text-align: center; font-size: 3rem; margin-bottom: 60px; position: relative; display: inline-block; left: 50%; transform: translateX(-50%); width: 100%; }
-        .section-title span { color: var(--primary); }
-        .section-title::after {
-            content: ''; display: block; width: 60px; height: 4px; background: var(--primary);
-            margin: 10px auto 0; border-radius: 2px;
-        }
+/* --- 1. MAIN CONTAINER (Forces centering) --- */
+.section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Centers items horizontally */
+    justify-content: center; /* Centers items vertically */
+    text-align: center;      /* Ensures text inside is centered */
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+/* --- 2. THE TITLE ("INSIDE THE ARENA") --- */
+.section-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* Layout Logic */
+    position: relative;
+    display: inline-block; /* Makes the box wrap tightly around text */
+    margin: 0;             /* Reset margins */
+    padding-bottom: 15px;  /* Space for the red line */
+    z-index: 1;
+}
+
+/* --- 3. LIFT "ARENA" UP --- */
+.section-title span {
+    display: inline-block;
+    position: relative;
+    top: -10px;            /* ADJUST THIS: Moves 'ARENA' up */
+    color: #ff3b3b;        /* Ensures it's red */
+}
+
+/* --- 4. THE RED LINE (Centered perfectly under title) --- */
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%); /* Locks it to the exact center */
+    
+    width: 60px;
+    height: 4px;
+    background: #ff3b3b;
+    border-radius: 2px;
+}
+
+/* --- 5. THE SUBTITLE (Centered & Spaced) --- */
+.section-subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 25px;      /* Gap between red line and text */
+    max-width: 600px;      /* Prevents it from getting too wide */
+    line-height: 1.5;
+}
 
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
