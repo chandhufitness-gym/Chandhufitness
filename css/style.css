@@ -1,3 +1,4 @@
+
 <style>
 /* =========================================
    THE "MODERN GLASS" DESIGN SYSTEM
@@ -405,23 +406,40 @@
             border-color: var(--primary);
         }
 
-/* HEADER ALIGNMENT FIX */
-.section-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* This forces perfect centering */
-    text-align: center;
-    margin-bottom: 50px;
-}
+/* --- FIXED SECTION TITLE ALIGNMENT --- */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: block; /* Changed from inline-block to block */
+            width: 100%;    /* Takes full width to center text properly */
+            left: auto;     /* Reset positioning */
+            transform: none; /* Remove shift */
+        }
 
-.section-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 2.5rem;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0;
-}
+        .section-title span { color: var(--primary); }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 10px auto 0; /* 'auto' centers the underline */
+            border-radius: 2px;
+        }
+
+        /* --- SERVICES SLIDER (Animation Kept Same) --- */
+        .slider-container {
+            height: 300px;
+            margin: auto;
+            position: relative;
+            width: 100%;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+        }
 
         .slider-container::before,
         .slider-container::after {
@@ -583,7 +601,14 @@
     background: #050505;
 }
 
-/* ... keep your gallery-section and section-header as they are ... */
+/* HEADER ALIGNMENT FIX */
+.section-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This forces perfect centering */
+    text-align: center;
+    margin-bottom: 50px;
+}
 
 .section-title {
     font-family: 'Oswald', sans-serif;
@@ -591,25 +616,7 @@
     color: white;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
-    /* --- FIX STARTS HERE --- */
-    position: relative;      /* anchors the red line */
-    display: inline-block;   /* keeps the box tight to the text */
-    
-    padding-bottom: 10px;    /* Space between "ARENA" and Red Line */
-    margin-bottom: 30px;     /* Space between Red Line and "World-class equipment..." */
-}
-
-/* THE RED LINE */
-.section-title::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%); /* Centers it perfectly */
-    bottom: 0;                   /* Puts it at the bottom of the padding */
-    width: 60px;
-    height: 3px;
-    background-color: #ff3b3b;
+    margin: 0;
 }
 
 .title-separator {
@@ -1203,62 +1210,5 @@ details[open] summary::after {
 
         @keyframes fadeIn { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
 
-/* LIGHTBOX STYLES */
-.lightbox {
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.95); /* Dark background */
-    display: none; /* Hidden by default */
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
 
-.lightbox.active {
-    display: flex;
-    opacity: 1;
-}
-
-.lightbox img {
-    max-width: 90%;
-    max-height: 80vh;
-    border: 2px solid #ff3b3b; /* Primary color border */
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(255, 59, 59, 0.3);
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-}
-
-.lightbox.active img {
-    transform: scale(1);
-}
-
-.close-btn {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.close-btn:hover {
-    color: #ff3b3b;
-}
-
-.lightbox-caption {
-    color: #ccc;
-    margin-top: 15px;
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-}
     </style>
