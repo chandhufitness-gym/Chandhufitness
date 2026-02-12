@@ -600,14 +600,7 @@
     background: #050505;
 }
 
-/* HEADER ALIGNMENT FIX */
-.section-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* This forces perfect centering */
-    text-align: center;
-    margin-bottom: 50px;
-}
+/* ... keep your gallery-section and section-header as they are ... */
 
 .section-title {
     font-family: 'Oswald', sans-serif;
@@ -615,7 +608,25 @@
     color: white;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: 0;
+    
+    /* --- FIX STARTS HERE --- */
+    position: relative;      /* anchors the red line */
+    display: inline-block;   /* keeps the box tight to the text */
+    
+    padding-bottom: 10px;    /* Space between "ARENA" and Red Line */
+    margin-bottom: 30px;     /* Space between Red Line and "World-class equipment..." */
+}
+
+/* THE RED LINE */
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%); /* Centers it perfectly */
+    bottom: 0;                   /* Puts it at the bottom of the padding */
+    width: 60px;
+    height: 3px;
+    background-color: #ff3b3b;
 }
 
 .title-separator {
