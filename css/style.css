@@ -405,71 +405,23 @@
             border-color: var(--primary);
         }
 
-/* --- HEADER CONTAINER --- */
+/* HEADER ALIGNMENT FIX */
 .section-header {
     display: flex;
     flex-direction: column;
-    align-items: center;  /* Forces everything to center horizontally */
-    justify-content: center;
+    align-items: center; /* This forces perfect centering */
     text-align: center;
     margin-bottom: 50px;
 }
 
-/* --- TITLE ("INSIDE THE ARENA") --- */
 .section-title {
     font-family: 'Oswald', sans-serif;
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: white;
     text-transform: uppercase;
     letter-spacing: 1px;
-    position: relative;
-    display: inline-block; /* Keeps the red line width tight to text */
-    margin-bottom: 0;      /* Remove bottom margin so subtitle controls spacing */
-    padding-bottom: 10px;  /* Space for the red line */
+    margin: 0;
 }
-
-/* --- LIFT "ARENA" HIGHER --- */
-.section-title span {
-    position: relative;
-    top: -10px;  /* Moves 'ARENA' slightly higher than 'INSIDE THE' */
-    display: inline-block;
-}
-
-/* --- THE RED LINE --- */
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background: #ff3b3b; /* Or var(--primary) */
-    margin: 0 auto;      /* Centers the line */
-    border-radius: 2px;
-    position: absolute;  /* Locks line to bottom of title */
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* --- THE SUBTITLE (Middle Alignment) --- */
-.section-subtitle {
-    text-align: center;   /* Forces text to center */
-    color: #888;
-    font-size: 0.9rem;
-    margin-top: 20px;     /* Push it down away from the red line */
-    width: 100%;
-    display: block;
-}
-
-        /* --- SERVICES SLIDER (Animation Kept Same) --- */
-        .slider-container {
-            height: 300px;
-            margin: auto;
-            position: relative;
-            width: 100%;
-            display: grid;
-            place-items: center;
-            overflow: hidden;
-        }
 
         .slider-container::before,
         .slider-container::after {
