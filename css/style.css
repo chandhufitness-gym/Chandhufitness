@@ -376,64 +376,19 @@
         }
 
 
-/* --- 1. MAIN CONTAINER (The Centering Engine) --- */
-.section-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;     /* This centers the inline-block title perfectly */
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    margin-bottom: 50px;
-}
-
-/* --- 2. THE TITLE (Hugs the text tightly) --- */
-.section-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 3rem;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    
-    /* Layout Logic */
-    position: relative;
-    display: inline-block; /* Crucial: Makes the box only as wide as the text */
-    margin: 0;             /* Reset margins */
-    padding-bottom: 15px;  /* Creates specific space for the red line */
-    z-index: 1;
-}
-
-/* --- 3. LIFT "ARENA" UP --- */
-.section-title span {
-    display: inline-block;
-    position: relative;
-    top: -10px;            /* Moves 'ARENA' up */
-    color: #ff3b3b;        /* Ensures it is red */
-}
-
-/* --- 4. THE RED LINE (Locks to the center of the text box) --- */
-.section-title::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%); /* Moves line to exact center of text */
-    
-    width: 60px;
-    height: 4px;
-    background: #ff3b3b;
-    border-radius: 2px;
-}
-
-/* --- 5. THE SUBTITLE (Centered & Spaced) --- */
-.section-subtitle {
-    text-align: center;
-    color: #888;
-    font-size: 0.9rem;
-    margin-top: 25px;      /* Gap between red line and text */
-    max-width: 600px;      /* Prevents it from getting too wide */
-    line-height: 1.5;
-}
+        /* --- 4. GLASSMORPHISM CARDS --- */
+        section { 
+            padding: 100px 5%; 
+            position: relative; 
+            overflow: hidden; 
+        }
+        
+        .section-title { text-align: center; font-size: 3rem; margin-bottom: 60px; position: relative; display: inline-block; left: 50%; transform: translateX(-50%); width: 100%; }
+        .section-title span { color: var(--primary); }
+        .section-title::after {
+            content: ''; display: block; width: 60px; height: 4px; background: var(--primary);
+            margin: 10px auto 0; border-radius: 2px;
+        }
 
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
