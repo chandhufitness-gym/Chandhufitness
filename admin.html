@@ -258,6 +258,32 @@
         margin: 0;
       }
     }
+
+    /* ── NO DATA STATE (Fix for Mobile) ── */
+    tr.no-data {
+      background: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      padding: 50px 0;
+    }
+    
+    tr.no-data td {
+      text-align: center;
+      color: #666;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      border: none !important;
+      width: 100%;
+      display: block;
+    }
+
+    /* Remove the auto-labels (e.g. "PHONE", "PLAN") for empty state */
+    tr.no-data td::before { content: none !important; }
+    
   </style>
 </head>
 <body>
