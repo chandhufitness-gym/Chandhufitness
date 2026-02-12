@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -160,7 +159,11 @@
             <img src="images/chandu.png" class="trainer-img">
             <h3>CHANDAN</h3><p style="color:var(--primary); font-size:0.9rem; margin-top:5px">HEAD COACH</p>
         </div>
-        
+        <div class="glass-card trainer-card" data-aos="flip-left" data-aos-delay="200">
+            <img src="images/vikas_2.png" class="trainer-img">
+            <h3>Vicky</h3><p style="color:var(--primary); font-size:0.9rem; margin-top:5px">MOBILITY EXPERT</p>
+        </div>
+    </div>
 </section>
 
 <section id="plans">
@@ -201,6 +204,10 @@
         
         <div class="section-header">
             <h2 class="section-title" data-aos="fade-up">INSIDE THE <span style="color:#ff3b3b">ARENA</span></h2>
+            <div class="title-separator"></div>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                World-class equipment. High-energy atmosphere.
+            </p>
         </div>
 
         <div class="gallery-grid">
@@ -284,12 +291,12 @@
                 <div class="user">- Manjunath Gowda</div>
             </div>
             <div class="review-card-small">
-                <div class="stars">⭐⭐⭐⭐</div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
                 <p>"Lost 5kg in my first month. Trainers are very helpful."</p>
                 <div class="user">- Priya Gowda S</div>
             </div>
             <div class="review-card-small">
-                <div class="stars">⭐⭐⭐⭐</div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
                 <p>"Best price in this area. No lockers but I keep my bag near the reception, fully safe."</p>
                 <div class="user">- Anjali M</div>
             </div>
@@ -299,28 +306,28 @@
                 <div class="user">- Darshan D</div>
             </div>
             <div class="review-card-small">
-                <div class="stars">⭐⭐⭐⭐🌗</div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
                 <p>"Affordable pricing for such premium machines."</p>
                 <div class="user">- Vicky</div>
             </div>
 
             <div class="review-card-small">
-                <div class="stars">⭐⭐⭐⭐🌗</div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
                 <p>"For this membership price, the machine quality is unbelievable."</p>
                 <div class="user">- Arun Kumar</div>
             </div>
             <div class="review-card-small">
-                <div class="stars">⭐⭐⭐⭐</div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
                 <p>"Respectful crowd. I finish my workout peacefully in the evenings."</p>
                 <div class="user">- Keerthi S</div>
             </div>
             <div class="review-card-small">
-                <div class="stars">⭐⭐⭐⭐🌗</div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
                 <p>"Safe environment for ladies. The crowd is decent and respectful."</p>
                 <div class="user">- Anjali M</div>
             </div>
             <div class="review-card-small">
-                <div class="stars">⭐⭐⭐⭐</div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
                 <p>"Lost 7 kgs in 2 months. Diet plan is simple and effective."</p>
                 <div class="user">- Karthik R</div>
             </div>
@@ -630,52 +637,7 @@
             document.body.style.overflow = "auto";
         }
     }
-
-    // Function to open the lightbox
-function openLightbox(card) {
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const caption = document.getElementById('lightbox-caption');
-    
-    // 1. Get the image source from the clicked card
-    const img = card.querySelector('img');
-    const title = card.querySelector('h3').innerText;
-    
-    // 2. Set the lightbox image and caption
-    lightboxImg.src = img.src;
-    caption.innerText = title;
-    
-    // 3. Show the lightbox
-    lightbox.style.display = 'flex';
-    // Small timeout to allow the 'display:flex' to apply before fading in
-    setTimeout(() => {
-        lightbox.classList.add('active');
-    }, 10);
-    
-    // Disable scrolling on background
-    document.body.style.overflow = 'hidden';
-}
-
-// Function to close the lightbox
-function closeLightbox() {
-    const lightbox = document.getElementById('lightbox');
-    
-    lightbox.classList.remove('active');
-    
-    // Wait for animation to finish before hiding
-    setTimeout(() => {
-        lightbox.style.display = 'none';
-    }, 300);
-    
-    // Re-enable scrolling
-    document.body.style.overflow = 'auto';
-}
-    
 </script>
-<div id="lightbox" class="lightbox" onclick="closeLightbox()">
-    <span class="close-btn">&times;</span>
-    <img id="lightbox-img" src="" alt="Full Preview">
-    <div id="lightbox-caption" class="lightbox-caption"></div>
-</div>
+
 </body>
 </html>
